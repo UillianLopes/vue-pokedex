@@ -16,6 +16,26 @@ body {
   max-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
+
+  @media only screen and (max-width: 600px) {
+    --container-width: 100%;
+  }
+
+  @media only screen and (min-width: 600px) {
+    --container-width: 100%;
+  }
+
+  @media only screen and (min-width: 768px) {
+    --container-width: 100%;
+  }
+
+  @media only screen and (min-width: 992px) {
+    --container-width: 100%;
+  }
+
+  @media only screen and (min-width: 1280px) {
+    --container-width: 1280px;
+  }
 }
 
 * {

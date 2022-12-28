@@ -7,14 +7,26 @@ export {};
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Container: typeof import('./src/components/Container/Container.vue')['default'];
+    Container: typeof import('./src/components/Container.vue')['default'];
+    ElAvatar: typeof import('element-plus/es')['ElAvatar'];
+    ElButton: typeof import('element-plus/es')['ElButton'];
     ElCard: typeof import('element-plus/es')['ElCard'];
-    ElPageHeader: typeof import('element-plus/es')['ElPageHeader'];
+    ElCol: typeof import('element-plus/es')['ElCol'];
+    ElDescriptions: typeof import('element-plus/es')['ElDescriptions'];
+    ElDescriptionsItem: typeof import('element-plus/es')['ElDescriptionsItem'];
+    ElRow: typeof import('element-plus/es')['ElRow'];
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar'];
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default'];
-    PokemonCard: typeof import('./src/components/PokemonCard/PokemonCard.vue')['default'];
+    ElTooltip: typeof import('element-plus/es')['ElTooltip'];
+    FlexColumn: typeof import('./src/components/FlexColumn.vue')['default'];
+    FlexRow: typeof import('./src/components/FlexRow.vue')['default'];
+    Header: typeof import('./src/components/Header.vue')['default'];
+    Icon: typeof import('./src/components/Icon.vue')['default'];
+    Main: typeof import('./src/components/Main.vue')['default'];
+    PokemonCard: typeof import('./src/components/PokemonCard.vue')['default'];
+    PokemonType: typeof import('./src/components/PokemonType.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];
+    VerticalSpacer: typeof import('./src/components/VerticalSpacer.vue')['default'];
   }
   export interface ComponentCustomProperties {
     vInfiniteScroll: typeof import('element-plus/es')['ElInfiniteScroll'];

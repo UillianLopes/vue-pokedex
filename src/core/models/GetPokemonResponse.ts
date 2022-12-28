@@ -1,78 +1,33 @@
-export interface Ability2 {
-  name: string;
-  url: string;
-}
-
 export interface Ability {
-  ability: Ability2;
+  ability: Info;
   is_hidden: boolean;
   slot: number;
 }
 
-export interface Form {
-  name: string;
-  url: string;
-}
-
-export interface Version {
-  name: string;
-  url: string;
-}
-
 export interface GameIndice {
   game_index: number;
-  version: Version;
-}
-
-export interface Item {
-  name: string;
-  url: string;
-}
-
-export interface Version2 {
-  name: string;
-  url: string;
+  version: Info;
 }
 
 export interface VersionDetail {
   rarity: number;
-  version: Version2;
+  version: Info;
 }
 
 export interface HeldItem {
-  item: Item;
+  item: Info;
   version_details: VersionDetail[];
-}
-
-export interface Move2 {
-  name: string;
-  url: string;
-}
-
-export interface MoveLearnMethod {
-  name: string;
-  url: string;
-}
-
-export interface VersionGroup {
-  name: string;
-  url: string;
 }
 
 export interface VersionGroupDetail {
   level_learned_at: number;
-  move_learn_method: MoveLearnMethod;
-  version_group: VersionGroup;
+  move_learn_method: Info;
+  version_group: Info;
 }
 
 export interface Move {
-  move: Move2;
+  move: Info;
   version_group_details: VersionGroupDetail[];
-}
-
-export interface Species {
-  name: string;
-  url: string;
 }
 
 export interface DreamWorld {
@@ -313,7 +268,7 @@ export interface Sprites {
   versions: Versions;
 }
 
-export interface Stat2 {
+export interface Info {
   name: string;
   url: string;
 }
@@ -321,23 +276,18 @@ export interface Stat2 {
 export interface Stat {
   base_stat: number;
   effort: number;
-  stat: Stat2;
-}
-
-export interface Type2 {
-  name: string;
-  url: string;
+  stat: Info;
 }
 
 export interface Type {
   slot: number;
-  type: Type2;
+  type: Info;
 }
 
-export interface IGetPokemonModel {
+export interface IGetPokemonResponse {
   abilities: Ability[];
   base_experience: number;
-  forms: Form[];
+  forms: Info[];
   game_indices: GameIndice[];
   height: number;
   held_items: HeldItem[];
@@ -348,34 +298,9 @@ export interface IGetPokemonModel {
   name: string;
   order: number;
   past_types: string[];
-  species: Species | null;
-  sprites: Sprites | null;
+  species: Info;
+  sprites: Sprites;
   stats: Stat[];
   types: Type[];
   weight: number;
-}
-
-export class GetPokemonModel implements IGetPokemonModel {
-  abilities: Ability[] = [];
-  base_experience = 0;
-  forms: Form[] = [];
-  game_indices: GameIndice[] = [];
-  height = 0;
-  held_items = [];
-  id = 0;
-  is_default = false;
-  location_area_encounters = '';
-  moves: Move[] = [];
-  name = '';
-  order = 0;
-  past_types: string[] = [];
-  stats: Stat[] = [];
-  types: Type[] = [];
-  weight = 0;
-  species: Species | null = null;
-  sprites: Sprites | null = null;
-
-  constructor(args: GetPokemonModel) {
-    Object.assign(this, args);
-  }
 }

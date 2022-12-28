@@ -1,6 +1,9 @@
 import axios from 'axios';
-import { IGetPokemonsModel, ListResponseModel } from '../models';
-import { GetPokemonModel } from '../models/GetPokemonModel';
+import {
+  IGetPokemonResponse,
+  IGetPokemonsResponse,
+  ListResponseModel,
+} from '../models';
 
 class PokemonService {
   private readonly _client = axios.create({
@@ -10,13 +13,13 @@ class PokemonService {
   getPokemons(params: {
     limit: number;
     offset: number;
-  }): Promise<ListResponseModel<IGetPokemonsModel>> {
+  }): Promise<ListResponseModel<IGetPokemonsResponse>> {
     return this._client
-      .get<ListResponseModel<IGetPokemonsModel>>('/pokemon', { params })
+      .get<ListResponseModel<IGetPokemonsResponse>>('/pokemon', { params })
       .then((response) => response.data);
   }
 
-  getPokemon(name: string): Promise<GetPokemonModel> {
+  getPokemon(name: string): Promise<IGetPokemonResponse> {
     return this._client
       .get(`/pokemon/${name}`)
       .then((response) => response.data);
