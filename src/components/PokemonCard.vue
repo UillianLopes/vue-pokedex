@@ -74,6 +74,7 @@ export default class PokemonCard extends Vue {
   &__image-container {
     display: flex;
     justify-content: center;
+    height: 150px;
   }
   &__descriptors {
     display: flex;
@@ -141,7 +142,7 @@ export default class PokemonCard extends Vue {
           </el-scrollbar>
         </div>
         <div class="pokemon-card__footer">
-          <router-link :to="'/pokemon/' + name">
+          <router-link :to="{ name: 'PokemonDetails', params: { name } }">
             <el-button type="primary" plain> View details </el-button>
           </router-link>
         </div>

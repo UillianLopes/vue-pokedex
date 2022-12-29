@@ -2,12 +2,13 @@
 import { Options, Vue } from 'vue-class-component';
 import { pokemonService } from '@/core/services/PokemonService';
 import { IGetPokemonsResponse } from '@/core/models';
-import { Capitalize } from '@/core/functions';
+import { Capitalize, HandleAxiosRequestErrors } from '@/core/functions';
 import PokemonCard from '@/components/PokemonCard.vue';
 import Container from '@/components/Container.vue';
 import Header from '@/components/Header.vue';
 import VerticalSpacer from '@/components/VerticalSpacer.vue';
 import Main from '@/components/Main.vue';
+import { AxiosError } from 'axios';
 
 @Options({
   components: {
@@ -18,7 +19,7 @@ import Main from '@/components/Main.vue';
     Main,
   },
 })
-export default class PokemonListView extends Vue {
+export default class List extends Vue {
   private readonly limit: number = 50;
   loading = false;
   pokemons: IGetPokemonsResponse[] = [];
@@ -42,6 +43,7 @@ export default class PokemonListView extends Vue {
           ? this.pokemons.concat(obtainedPokemons)
           : obtainedPokemons;
       })
+      .catch((error: AxiosError) => HandleAxiosRequestErrors('Pokemons', error))
       .finally(() => (this.loading = false));
   }
 
@@ -52,6 +54,7 @@ export default class PokemonListView extends Vue {
   scrolled(scrolled: { scrollTop: number }): void {
     this.scrollTop = scrolled.scrollTop;
   }
+
   readonly Capitalize = Capitalize;
 }
 </script>
@@ -86,7 +89,7 @@ export default class PokemonListView extends Vue {
 </style>
 
 <template>
-  <Container @scroll="scrolled($event)" ref="appContainer" v-loading="loading">
+  <Container @scroll="scrolled($event)" v-loading="loading">
     <Header id="header" :sticky="scrollTop > 0">
       <template #title> Pokedex </template>
     </Header>

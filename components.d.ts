@@ -7,13 +7,16 @@ export {};
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BackButton: typeof import('./src/components/BackButton.vue')['default'];
     Container: typeof import('./src/components/Container.vue')['default'];
+    ElAlert: typeof import('element-plus/es')['ElAlert'];
     ElAvatar: typeof import('element-plus/es')['ElAvatar'];
     ElButton: typeof import('element-plus/es')['ElButton'];
     ElCard: typeof import('element-plus/es')['ElCard'];
     ElCol: typeof import('element-plus/es')['ElCol'];
     ElDescriptions: typeof import('element-plus/es')['ElDescriptions'];
     ElDescriptionsItem: typeof import('element-plus/es')['ElDescriptionsItem'];
+    ElIcon: typeof import('element-plus/es')['ElIcon'];
     ElRow: typeof import('element-plus/es')['ElRow'];
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar'];
     ElTooltip: typeof import('element-plus/es')['ElTooltip'];

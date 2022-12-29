@@ -16,6 +16,9 @@ body {
   max-height: 100vh;
   box-sizing: border-box;
   overflow: hidden;
+  --small-gap: 8px;
+  --medium-gap: 16px;
+  --large-gap: 24px;
 
   @media only screen and (max-width: 600px) {
     --container-width: 100%;

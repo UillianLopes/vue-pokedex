@@ -4,10 +4,11 @@ import FlexColumn from '@/components/FlexColumn.vue';
 import Header from '@/components/Header.vue';
 import Main from '@/components/Main.vue';
 import VerticalSpacer from '@/components/VerticalSpacer.vue';
-import { Capitalize } from '@/core/functions';
+import { Capitalize, HandleAxiosRequestErrors } from '@/core/functions';
 import { Replace } from '@/core/functions/Replace';
 import { DetailedPokemonModel } from '@/core/models';
 import { pokemonService } from '@/core/services';
+import { AxiosError } from 'axios';
 import { Options, Vue } from 'vue-class-component';
 
 @Options({
@@ -18,9 +19,15 @@ import { Options, Vue } from 'vue-class-component';
     VerticalSpacer,
     FlexColumn,
   },
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+  },
 })
-export default class PokemonDetailsView extends Vue {
-  name = '';
+export default class Details extends Vue {
+  name!: string;
   loading = false;
   detailedPokemon: DetailedPokemonModel | null = null;
 
@@ -29,16 +36,21 @@ export default class PokemonDetailsView extends Vue {
       return;
     }
 
-    this.name = this.$route.params.name;
     this.loadPokemon();
   }
 
   loadPokemon() {
     this.loading = true;
-    pokemonService.getPokemon(this.name).then((pokemon) => {
-      this.detailedPokemon = new DetailedPokemonModel(pokemon);
-      this.loading = false;
-    });
+    pokemonService
+      .getPokemon(this.name)
+      .then((pokemon) => {
+        this.detailedPokemon = new DetailedPokemonModel(pokemon);
+        this.loading = false;
+      })
+      .catch((error: AxiosError) => HandleAxiosRequestErrors('Pokemon', error))
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   get image(): string {
